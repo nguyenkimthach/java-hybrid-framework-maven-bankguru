@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite parallel="false" name="NopCommerce - User">
+
+	<listeners>
+		<listener class-name="reportConfig.AllureTestListener" />
+	</listeners>
+
+	<parameter name="envName" value="local" />
+
+	<test name="Run on Firefox">
+		<parameter name="browserName" value="chrome" />
+		<classes>
+			<class name="com.bankguru.User_01_New_Customer" />
+		</classes>
+
+		<!-- <packages> -->
+		<!-- <package name="com.nopcommerce.admin" /> -->
+		<!-- <package name="com.nopcommerce.user" /> -->
+		<!-- </packages> -->
+
+	</test>
+</suite> 
