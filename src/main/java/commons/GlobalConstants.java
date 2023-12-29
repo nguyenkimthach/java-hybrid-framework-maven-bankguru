@@ -30,7 +30,7 @@ public class GlobalConstants {
 
 	private final String uploadFile = projectPath + File.separator + "uploadFiles" + File.separator;
 	private final String downloadFile = projectPath + File.separator + "downloadFiles";
-	private final String browserLogPath = projectPath + File.separator + "browserLogs" + File.separator + "FirefoxLog.log";
+	private final String browserLogPath = projectPath + File.separator + "src//main//resources//browserLogs" + File.separator + "FirefoxLog.log";
 	private final String dragDropHtml5 = projectPath + File.separator + "dragDropHTML5";
 	private final String autoItScript = projectPath + File.separator + "autoIT";
 	private final String reportingScreenshort = projectPath + File.separator + "ReportNGImages" + File.separator;
