@@ -304,6 +304,7 @@ public class BasePage {
 	 */
 	protected void clickToElement(String locatorType) {
 		WebElement element = driver.findElement(getByLocator(locatorType));
+		highlightElement(locatorType);
 		if (driver.toString().contains("internet explorer")) {
 			clickToElementByJS(locatorType);
 			sleepInSecond(3);
@@ -322,6 +323,7 @@ public class BasePage {
 	 */
 	protected void clickToElement(String locatorType, String... dynamicValues) {
 		WebElement element = driver.findElement(getByLocator(getDynamicXpath(locatorType, dynamicValues)));
+		highlightElement(locatorType, dynamicValues);
 		if (driver.toString().contains("internet explorer")) {
 			clickToElementByJS(locatorType, dynamicValues);
 			sleepInSecond(3);
@@ -340,6 +342,7 @@ public class BasePage {
 	 */
 	protected void senkeyToElement(String locatorType, String textValue) {
 		WebElement element = getWebElement(locatorType);
+		highlightElement(locatorType);
 		element.clear();
 		element.sendKeys(textValue);
 	}
@@ -355,6 +358,7 @@ public class BasePage {
 	 */
 	protected void senkeyToElement(String locatorType, String textValue, String... dynamicValues) {
 		WebElement element = getWebElement(getDynamicXpath(locatorType, dynamicValues));
+		highlightElement(locatorType, dynamicValues);
 		element.clear();
 		element.sendKeys(textValue);
 	}
@@ -490,9 +494,9 @@ public class BasePage {
 	 * @throws IllegalArgumentException If the provided time is negative.
 	 * @author ThachNk
 	 */
-	protected void sleepInSecond(long timeInSecond) {
+	protected void sleepInSecond(double d) {
 		try {
-			Thread.sleep(timeInSecond * 1000);
+			Thread.sleep((long) (d * 1000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -623,6 +627,7 @@ public class BasePage {
 	 */
 	protected void checkToDefaultCheckboxOrRadio(String locatorType) {
 		WebElement element = getWebElement(locatorType);
+		highlightElement(locatorType);
 		if (!element.isSelected()) {
 			element.click();
 		}
@@ -638,6 +643,7 @@ public class BasePage {
 	 */
 	protected void checkToDefaultCheckboxOrRadio(String locatorType, String... dynamicValues) {
 		WebElement element = getWebElement(getDynamicXpath(locatorType, dynamicValues));
+		highlightElement(locatorType, dynamicValues);
 		if (!element.isSelected()) {
 			element.click();
 		}
@@ -652,6 +658,7 @@ public class BasePage {
 	 */
 	protected void unCheckToDefaultCheckboxRadio(String locatorType) {
 		WebElement element = getWebElement(locatorType);
+		highlightElement(locatorType);
 		if (element.isSelected()) {
 			element.click();
 		}
@@ -667,6 +674,7 @@ public class BasePage {
 	 */
 	protected void unCheckToDefaultCheckboxRadio(String locatorType, String... dynamicValues) {
 		WebElement element = getWebElement(getDynamicXpath(locatorType, dynamicValues));
+		highlightElement(locatorType, dynamicValues);
 		if (element.isSelected()) {
 			element.click();
 		}
@@ -681,6 +689,7 @@ public class BasePage {
 	 * @author ThachNk
 	 */
 	protected boolean isElementDisPlayed(String locatorType) {
+		highlightElement(locatorType);
 		try {
 			return getWebElement(locatorType).isDisplayed();
 		} catch (Exception e) {
@@ -698,7 +707,12 @@ public class BasePage {
 	 * @author ThachNk
 	 */
 	protected boolean isElementDisPlayed(String locatorType, String... dynamicValues) {
-		return getWebElement(getDynamicXpath(locatorType, dynamicValues)).isDisplayed();
+		highlightElement(locatorType, dynamicValues);
+		try {
+			return getWebElement(getDynamicXpath(locatorType, dynamicValues)).isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	/**
@@ -832,6 +846,7 @@ public class BasePage {
 	 */
 	protected void hoverMouseToElement(String locatorType) {
 		Actions action = new Actions(driver);
+		highlightElement(locatorType);
 		action.moveToElement(getWebElement(locatorType)).perform();
 	}
 
@@ -845,6 +860,7 @@ public class BasePage {
 	 */
 	protected void hoverMouseToElement(String locatorType, String... dynamicValues) {
 		Actions action = new Actions(driver);
+		highlightElement(locatorType, dynamicValues);
 		action.moveToElement(getWebElement(getDynamicXpath(locatorType, dynamicValues))).perform();
 	}
 
@@ -896,7 +912,23 @@ public class BasePage {
 		WebElement element = getWebElement(locatorType);
 		String originalStyle = element.getAttribute("style");
 		((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 2px solid red; border-style: dashed;");
-		sleepInSecond(1);
+		sleepInSecond(0.2);
+		((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
+	}
+
+	/**
+	 * Highlights the WebElement identified by the provided locator type. The element is briefly outlined with a red dashed border.
+	 *
+	 * @param locatorType   The type of the locator (e.g., id, class, xpath).
+	 * @param dynamicValues The dynamic values to be used in formatting the XPath.
+	 * @throws IllegalArgumentException If the locator format is invalid or not supported.
+	 * @author ThachNk
+	 */
+	protected void highlightElement(String locatorType, String... dynamicValues) {
+		WebElement element = getWebElement(getDynamicXpath(locatorType, dynamicValues));
+		String originalStyle = element.getAttribute("style");
+		((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 2px solid red; border-style: dashed;");
+		sleepInSecond(0.2);
 		((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
 	}
 

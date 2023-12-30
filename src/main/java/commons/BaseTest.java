@@ -213,22 +213,41 @@ public class BaseTest {
 		return getCurrentDate() + "/" + getCurrentMonth() + "/" + getCurrentYear();
 	}
 
-	/*
-	 * get curent day follow formart: "Sunday, December 24, 2023"
-	 */
-	protected static String getCurrentDateFormatted() {
+	protected String getCurrentDateFormatted() {
 		LocalDate currentDate = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
 		return currentDate.format(formatter);
 	}
 
-	/*
-	 * get Yesterday day follow formart: "Sunday, December 24, 2023"
-	 */
-	protected static String getYesterdayFormatted() {
+	protected String getYesterdayFormatted() {
 		LocalDate yesterday = LocalDate.now().minusDays(1);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
 		return yesterday.format(formatter);
+	}
+
+	/**
+	 * Converts a string from the format "aa/bb/cccc" to "cccc-aa-bb".
+	 *
+	 * @param input The input string to be converted
+	 * @return The converted string or an error message if the input is invalid
+	 */
+	protected String changeFormartDate(String dateInput, String formatType) {
+		String[] parts = dateInput.split("/");
+
+		if (parts.length == 3) {
+			String yyyy = parts[2];
+			String dd = parts[0];
+			String MM = parts[1];
+
+			if ("yyyy-dd-MM".equals(formatType))
+				return yyyy + "-" + dd + "-" + MM;
+			else if ("yyyy-MM-dd".equals(formatType))
+				return yyyy + "-" + MM + "-" + dd;
+			else
+				return "Invalid formatType";
+		} else {
+			return "Invalid input format";
+		}
 	}
 
 	protected void showBrowserConsoleLogs(WebDriver driver) {
