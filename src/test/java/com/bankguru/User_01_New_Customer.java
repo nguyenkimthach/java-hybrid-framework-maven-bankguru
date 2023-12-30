@@ -43,7 +43,7 @@ public class User_01_New_Customer extends BaseTest {
 		loginPage.inPutToPasswordTextbox(userPassword);
 		managePage = loginPage.clickToLoginButton();
 
-		Assert.assertTrue(managePage.isManagerPageMessageDiplayedByText("Welcome To Manager's Page of Guru99 Bank"));
+		Assert.assertTrue(managePage.isManagerPageMessageDiplayedWithText("Welcome To Manager's Page of Guru99 Bank"));
 		managePage.openMenuItemByText("New Customer");
 		managePage.clickToAvertimentDismissButton();
 
