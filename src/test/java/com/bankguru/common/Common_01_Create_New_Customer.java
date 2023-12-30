@@ -38,7 +38,7 @@ public class Common_01_Create_New_Customer extends BaseTest {
 		pin = dataFaker.getPINCode();
 		mobileNumber = dataFaker.getPhone();
 		password = "123456";
-		email = dataFaker.getEmailAddress();
+		email = dataFaker.getEmailAddressByRandomNumber();
 
 		registerPage.inPutToEmailTextbox(userEmail);
 		registerPage.clickToSubmitButton();

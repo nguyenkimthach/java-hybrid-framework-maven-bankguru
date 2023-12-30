@@ -1,6 +1,7 @@
 package utilities;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -61,6 +62,14 @@ public class DataHelper {
 
 	public String getEmailAddress() {
 		return faker.internet().emailAddress();
+	}
+
+	public String getEmailAddressByRandomNumber() {
+		return "auto" + getRandomNumberByDateTime() + "@gmail.com";
+	}
+
+	public static long getRandomNumberByDateTime() {
+		return Calendar.getInstance().getTimeInMillis() % 100000;
 	}
 
 	public String getPassword() {
