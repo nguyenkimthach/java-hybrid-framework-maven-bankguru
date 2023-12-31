@@ -11,16 +11,16 @@ public class ExtentManager {
 
 	public synchronized static ExtentReports createExtentReports() {
 		ExtentSparkReporter reporter = new ExtentSparkReporter(GlobalConstants.getGlobalConstants().getProjectPath() + "/extentV5/ExtentReport.html");
-		reporter.config().setReportName("NopCommerce HTML Report");
-		reporter.config().setDocumentTitle("NopCommerce HTML Report");
+		reporter.config().setReportName("BankGuru Allure Report");
+		reporter.config().setDocumentTitle("BankGuru Allure Report");
 		reporter.config().setTimelineEnabled(true);
 		reporter.config().setEncoding("utf-8");
 		reporter.config().setTheme(Theme.DARK);
 
 		extentReports.attachReporter(reporter);
 		extentReports.setSystemInfo("Company", "Automation FC");
-		extentReports.setSystemInfo("Project", "NopCommerce");
-		extentReports.setSystemInfo("Team", "Basus VN");
+		extentReports.setSystemInfo("Project", "BankGuru");
+		extentReports.setSystemInfo("Team", "THACH NK");
 		extentReports.setSystemInfo("JDK version", GlobalConstants.getGlobalConstants().getJavaVersion());
 		return extentReports;
 	}
