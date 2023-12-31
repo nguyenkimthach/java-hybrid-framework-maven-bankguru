@@ -32,7 +32,6 @@ public class Common_01_Create_New_Customer extends BaseTest {
 		customerName = dataFaker.getFullname();
 		gender = dataFaker.getGenderMaleAndFemale();
 		dateOfBirth = dataFaker.getBirthDay("MM/dd/yyyy");
-		System.out.println(dateOfBirth);
 		address = dataFaker.getAddress();
 		city = dataFaker.getCityName();
 		state = dataFaker.getState();
