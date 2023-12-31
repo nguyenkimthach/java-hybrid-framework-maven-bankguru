@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite parallel="tests" name="BankGuru - User" thread-count="2">
+<suite parallel="false" name="BankGuru - User" thread-count="2">
 
 	<listeners>
 		<listener class-name="reportConfig.AllureTestListener" />
