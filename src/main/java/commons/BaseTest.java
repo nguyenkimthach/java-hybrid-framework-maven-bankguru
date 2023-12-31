@@ -35,7 +35,7 @@ public class BaseTest {
 
 	@BeforeSuite
 	public void deleteFileInReport() {
-		deleteAllFileInFolder("allure-results");
+		deleteAllFileInFolder("target/allure-results");
 	}
 
 	protected WebDriver getBrowserDriverAll(String envName, String severName, String browserName, String ipAddress, String portNumber, String osName, String osVersion, String browserVersion) {
