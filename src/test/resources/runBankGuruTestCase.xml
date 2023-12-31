@@ -15,14 +15,4 @@
 			<package name="com.bankguru" />
 		</packages>
 	</test>
-	
-	<test name="Run on Edge">
-		<parameter name="browserName" value="edge" />
-
-		<packages>
-			<package name="com.bankguru.common" />
-			<package name="com.bankguru" />
-		</packages>
-	</test>
-
 </suite> 
