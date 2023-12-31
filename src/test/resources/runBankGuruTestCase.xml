@@ -9,10 +9,13 @@
 
 	<test name="Run on Chrome">
 		<parameter name="browserName" value="chrome" />
-
-		<packages>
-			<package name="com.bankguru.common" />
-			<package name="com.bankguru" />
-		</packages>
+		
+		<classes>
+			<class name="com.bankguru.User_01_New_Customer" />
+		</classes>
+		<!-- <packages> -->
+		<!-- <package name="com.bankguru.common" /> -->
+		<!-- <package name="com.bankguru" /> -->
+		<!-- </packages> -->
 	</test>
 </suite> 
